@@ -4,7 +4,8 @@ import multiprocessing
 def grade_all(name, begin, end, funcs):
     grade = 0
     for q in range(begin, end):
-        func = lambda: 0 if funcs["grade_Q%d" % q]() else 1
+        def func():
+            exit(0 if funcs["grade_Q%d" % q]() else 1)
         try:
             p = multiprocessing.Process(target = func)
             p.start()
