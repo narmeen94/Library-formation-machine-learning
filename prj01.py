@@ -8,9 +8,8 @@ def Q1():
 
 # Add two numpy arrays together.
 def Q2(a, b):
-    a=nn.Input("a")
-    b=nn.Input("b")
-    return a+b
+    
+    return None
 
 # Multiply two 2D numpy arrays using matrix multiplication.
 def Q3(a, b):
@@ -27,7 +26,9 @@ def Q5(A, b):
 
 # Return an EasyNN expression for a+b.
 def Q6():
-    return None
+    a=nn.Input("a")
+    b=nn.Input("b")
+    return a+b
 
 # Return an EasyNN expression for a+b*c.
 def Q7():
