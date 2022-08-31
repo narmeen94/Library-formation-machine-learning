@@ -35,9 +35,9 @@ def Q7():
     a=nn.Input("a")
     b=nn.Input("b")
     c=nn.Input("c")
-    #d=b*c
-    #out=a+d
-    return a+b*c
+    d=b*c
+    out=a+d
+    return out
 
 # Given A and b, return an EasyNN expression for Ax+b.
 def Q8(A, b):
