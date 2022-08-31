@@ -32,7 +32,10 @@ def Q6():
 
 # Return an EasyNN expression for a+b*c.
 def Q7():
-    return None
+    a=nn.Input("a")
+    b=nn.Input("b")
+    c=nn.Input("c")
+    return a+b*c
 
 # Given A and b, return an EasyNN expression for Ax+b.
 def Q8(A, b):
