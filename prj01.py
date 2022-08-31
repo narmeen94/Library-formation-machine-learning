@@ -9,7 +9,7 @@ def Q1():
 # Add two numpy arrays together.
 def Q2(a, b):
     
-    return None
+    return a+b
 
 # Multiply two 2D numpy arrays using matrix multiplication.
 def Q3(a, b):
