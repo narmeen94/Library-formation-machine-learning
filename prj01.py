@@ -12,8 +12,8 @@ def Q2(a, b):
     return a+b
 
 # Multiply two 2D numpy arrays using matrix multiplication.
-def Q3(a, b):
-    return None
+#def Q3(a, b):
+    #return None
 
 # For each row of a 2D numpy array, find the column index
 # with the maximum element. Return all these column indices.
@@ -35,9 +35,13 @@ def Q7():
     a=nn.Input("a")
     b=nn.Input("b")
     c=nn.Input("c")
-    d=b*c
-    out=a+d
-    return out
+    t0=a.Input()
+    t1=b.Input()
+    t2=c.Input()
+    t3=t1*t2  #b*c
+    t4=t3+t0  #a+b*c
+
+    return t4
 
 # Given A and b, return an EasyNN expression for Ax+b.
 def Q8(A, b):
