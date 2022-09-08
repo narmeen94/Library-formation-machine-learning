@@ -4,7 +4,11 @@ import easynn as nn
 # Create a numpy array of 10 rows and 5 columns.
 # Set the element at row i and column j to be i+j.
 def Q1():
-    return None
+    a=np.empty((10,5),dtype=int)
+    for i in range(10):
+        for j in range(5):
+            a[i,j]=i+j
+    return a
 
 # Add two numpy arrays together.
 def Q2(a, b):
@@ -40,8 +44,10 @@ def Q7():
 
 # Given A and b, return an EasyNN expression for Ax+b.
 def Q8(A, b):
-    return None
-
+    #x=nn.Input("x")
+    
+    t=nn.Linear(x)
+    return t
 # Given n, return an EasyNN expression for x**n.
 def Q9(n):
     return None
