@@ -44,13 +44,17 @@ def Q7():
 
 # Given A and b, return an EasyNN expression for Ax+b.
 def Q8(A, b):
-    #x=nn.Input("x")
-    
-    t=nn.Linear(x)
-    return t
+    x=nn.Input("x")
+    A=nn.Const(A)
+    b=nn.Const(b) 
+    return (A*x)+b
 # Given n, return an EasyNN expression for x**n.
 def Q9(n):
-    return None
+
+     x=nn.Input("x")
+     n=float(n)
+
+     return x**n
 
 # Return an EasyNN expression to compute
 # the element-wise absolute value |x|.
