@@ -52,11 +52,24 @@ def Q8(A, b):
 def Q9(n):
 
      x=nn.Input("x")
-     n=float(n)
+     #p=np.power(x,n)
+     n=nn.Const(n)
+     for x in range(int(n)-2):
+        x=x*x
+     t=x
 
-     return x**n
+     #n = np.random.rand(100, 1)
+     #x=float(x)            
+     
+     return t
 
 # Return an EasyNN expression to compute
 # the element-wise absolute value |x|.
 def Q10():
-    return None
+    #x=nn.Input2d("x",1,1,1)
+    #x=nn.Input2d("x","height","width","in_channels")
+    #x=nn.Input("x")
+    x=np.array([[1,1],[1,-1]])
+    relu=nn.ReLU()
+    d=relu(x)
+    return d
