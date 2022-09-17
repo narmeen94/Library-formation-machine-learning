@@ -49,22 +49,22 @@ def Q8(A, b):
     b=nn.Const(b) 
     return (A*x)+b
 # Given n, return an EasyNN expression for x**n.
+# #defining  a new function to give the expression x**n
 def powerof(a,b):
     if b==0:
         return 1
     if b!=0:
-        return a* powerof(a,b-1)
+        return a*powerof(a,b-1)
 def Q9(n):
 
      x=nn.Input("x")
-     #p=np.power(x,n)
-     #n=nn.Const(n)
-     #for x in range(int(n)-2):
-        #x=x*x
-     #t=x 
-     t=powerof(x,n)          
+     i=0
+     y=x
+     for i in range(n-1):
+        y=y*x
+        i=i+1         
      
-     return t
+     return y
 
 # Return an EasyNN expression to compute
 # the element-wise absolute value |x|.
@@ -72,7 +72,6 @@ def Q10():
     #x=nn.Input2d("x",1,1,1)
     #x=nn.Input2d("x","height","width","in_channels")
     x=nn.Input("x")
-    #x=np.array([[1,1],[1,-1]])
     relu=nn.ReLU()
     one=relu(x)
     two=relu(-x)
