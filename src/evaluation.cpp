@@ -2,7 +2,7 @@
 #include "evaluation.h"
 
 evaluation::evaluation(const std::vector<expression> &exprs)
-    : result_(0)
+    : result_(0)  //this seems a constructor initializer??
 {
 }
 

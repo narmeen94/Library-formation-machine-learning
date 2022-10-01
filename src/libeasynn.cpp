@@ -66,7 +66,7 @@ void add_kwargs_double(
 {
     printf("evaluation %p, key %s, value %f\n",
         eval, key, value);
-    eval->add_kwargs_double(key, value);
+    eval->add_kwargs_double(key, value); //we are adding the object eval from evaluation
 }
 
 void add_kwargs_ndarray(
@@ -91,13 +91,13 @@ int execute(
     double **p_data)
 {
     printf("evaluation %p, p_dim %p, p_shape %p, p_data %p\n",
-        eval, p_dim, p_shape, p_data);
+        eval, p_dim, p_shape, p_data);   //%p is for the pointer values
     int ret = eval->execute();
-    if (ret != 0)
+    if (ret != 0) //????
         return ret;
-    *p_dim = 0;
-    *p_shape = nullptr;
-    *p_data = &eval->get_result();
-    fflush(stdout);
+    *p_dim = 0; //why?
+    *p_shape = nullptr; //why?
+    *p_data = &eval->get_result(); //why &eval?     //from evaluation.cpp
+    fflush(stdout); //all buffered charcters are transmitted to the terminal
     return 0;
 }

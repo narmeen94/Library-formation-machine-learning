@@ -49,12 +49,6 @@ def Q8(A, b):
     b=nn.Const(b) 
     return (A*x)+b
 # Given n, return an EasyNN expression for x**n.
-# #defining  a new function to give the expression x**n
-def powerof(a,b):
-    if b==0:
-        return 1
-    if b!=0:
-        return a*powerof(a,b-1)
 def Q9(n):
 
      x=nn.Input("x")
