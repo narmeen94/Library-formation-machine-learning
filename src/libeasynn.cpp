@@ -4,6 +4,7 @@
 #include "program.h"
 #include "evaluation.h"
 
+
 program *create_program()
 {
     program *prog = new program;
@@ -23,8 +24,14 @@ void append_expression(
         prog, expr_id, op_name, op_type, num_inputs);
     for (int i = 0; i != num_inputs; ++i)
         printf("%d,", inputs[i]);
-    printf(")\n");
-    prog->append_expression(expr_id, op_name, op_type, inputs, num_inputs);
+    printf(")\n"); //so the print on console is program......inputs 0 (blah)
+    prog->append_expression(expr_id, op_name, op_type, inputs, num_inputs); //what does this mean? like why do we do prog->? can't we write (prog,expr_id,...)??
+    //prog->push_back(expr);
+    
+
+
+    
+
 }
 
 int add_op_param_double(
@@ -49,13 +56,17 @@ int add_op_param_ndarray(
     for (int i = 0; i != dim; ++i)
         printf("%zu,", shape[i]);
     printf(")\n");
-    return prog->add_op_param_ndarray(key, dim, shape, data);
+    //return prog->add_op_param_ndarray(key, dim, shape, data);
+    return 0;
 }
 
 evaluation *build(program *prog)
 {
     evaluation *eval = prog->build();
     printf("evaluation %p\n", eval);
+
+    // std::vector<expression>exprs_;
+    // exprs_.push_back(expression(expr_id,op_name,op_type,inputs,num_inputs))
     return eval;
 }
 
@@ -76,12 +87,12 @@ void add_kwargs_ndarray(
     size_t shape[],
     double data[])
 {
-    printf("evaluation %p, key %s, value %p dim %d (",
-        eval, key, data, dim);
-    for (int i = 0; i != dim; ++i)
-        printf("%zu,", shape[i]);
-    printf(")\n");
-    eval->add_kwargs_ndarray(key, dim, shape, data);
+    // printf("evaluation %p, key %s, value %p dim %d (",
+    //     eval, key, data, dim);
+    // for (int i = 0; i != dim; ++i)
+    //     printf("%zu,", shape[i]);
+    // printf(")\n");
+    // eval->add_kwargs_ndarray(key, dim, shape, data);
 }
 
 int execute(

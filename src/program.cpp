@@ -1,8 +1,11 @@
 #include "program.h"
 #include "evaluation.h"
+#include "expression.h"
+#include <iostream> 
 
 program::program()
 {
+    
 }
 
 void program::append_expression(
@@ -12,6 +15,12 @@ void program::append_expression(
     int inputs[],
     int num_inputs)
 {
+    
+   
+    exprs_.push_back(expression(expr_id,op_name,op_type,inputs,num_inputs));
+    //std::cout<< << std::endl;
+    
+
 }
 
 int program::add_op_param_double(
@@ -30,7 +39,14 @@ int program::add_op_param_ndarray(
     return -1;
 }
 
-evaluation *program::build() //what does this mean?
+
+evaluation *program::build() 
 {
-    return nullptr;
+     evaluation *val=new evaluation(exprs_); 
+     return val;
+
+    
+    //return nullptr;
+    
 }
+    

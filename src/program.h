@@ -4,9 +4,11 @@
 #include "expression.h"
 
 class evaluation;
+class expression;
 
 class program
 {
+    std::vector<expression> exprs_;
 public:
     program();
 
@@ -16,7 +18,7 @@ public:
         const char *op_type,
         int inputs[],
         int num_inputs);
-
+        
     // return 0 for success
     int add_op_param_double(
         const char *key,
@@ -30,6 +32,10 @@ public:
         double data[]);
 
     evaluation *build();
+
+    
+
+    
 }; // class program
 
 #endif // PROGRAM_H
