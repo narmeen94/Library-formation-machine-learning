@@ -33,11 +33,12 @@ public:
         size_t shape[],
         double data[]);
 
-    // int get_id();
+    int get_id();
 
-    // std::string get_op_name();
+    std::string get_op_name();
 
-    // std::string get_op_type();
+    std::string get_op_type();
+    std::vector<int> get_inputs();
    // void print_output(std::vector<expression>&exprs);
 
 

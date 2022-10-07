@@ -5,7 +5,16 @@
 
 class evaluation
 {
+    std::map<std::string,double>kwargs; 
+    std::vector<expression> copy_exprs;
+    // int expr_id_;
+    // const char *op_name_;
+    // const char *op_type_;
+    // int *inputs_;
+    // int num_inputs_;
 public:
+    
+
     evaluation(const std::vector<expression> &exprs);
 
     void add_kwargs_double(
@@ -20,7 +29,7 @@ public:
 
     // return 0 for success
     int execute();
-    
+
 
     // return the variable computed by the last expression
     double &get_result();
