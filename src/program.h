@@ -9,6 +9,8 @@ class expression;
 class program
 {
     std::vector<expression> exprs_;
+    std::map<std::string,double>const_;
+
 public:
     program();
 

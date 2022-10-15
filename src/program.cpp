@@ -35,7 +35,8 @@ int program::add_op_param_double(
     const char *key,
     double value)
 {
-    return -1;
+    const_["value"]=value;
+    return 0;
 }
 
 int program::add_op_param_ndarray(
@@ -50,7 +51,7 @@ int program::add_op_param_ndarray(
 
 evaluation *program::build() 
 {
-     evaluation *val=new evaluation(exprs_); 
+     evaluation *val=new evaluation(exprs_,const_); 
      return val;
 
     

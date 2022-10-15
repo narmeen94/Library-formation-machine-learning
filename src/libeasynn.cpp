@@ -65,8 +65,6 @@ evaluation *build(program *prog)
     evaluation *eval = prog->build();
     printf("evaluation %p\n", eval);
 
-    // std::vector<expression>exprs_;
-    // exprs_.push_back(expression(expr_id,op_name,op_type,inputs,num_inputs))
     return eval;
 }
 
