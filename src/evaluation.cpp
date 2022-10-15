@@ -16,40 +16,13 @@ evaluation::evaluation(const std::vector<expression> &exprs) //a vector can be p
     
     for (int i=0;i<int(exprs.size());i++){
         std::cout << "expression number:"<< i<<std::endl;
-        std::cout<< exprs_copy[i].get_id()<<""<<std::endl;
-        std::cout<< exprs_copy[i].get_op_name()<<""<<std::endl;
-        std::cout<< exprs_copy[i].get_op_type()<<""<<std::endl;
-        //std::cout<< exprs_copy[i].get_inputs()<<""<<std::endl;
-
-
-        
-
-        
-        
-        
-       
-       
-     
-    
-    
-
-        
+        std::cout<< "this is expression id:"<< exprs_copy[i].get_id()<<""<<std::endl;
+        std::cout<< "this is operand name:"<< exprs_copy[i].get_op_name()<<""<<std::endl;
+        std::cout<< "this is operator type:"<<exprs_copy[i].get_op_type()<<""<<std::endl;
+        //std::cout<< exprs_copy[i].get_inputs()<<""<<std::endl;   
     }
 
     
-    // std::ostringstream myexprs;
-    // std::copy(&exprs.begin(),&exprs.end()-1,std::ostream_iterator<expression>(myexprs,","));
-    // myexprs<<&exprs.back();
-    // std::cout<<myexprs.str()<<std::endl;
-    //std::cout<< "this is my new ouput" << &exprs <<  std::endl;
-    //std::cout<< exprs.size() <<std::endl;
-    //std::cout<< "this is my element ouput" << exprs.at(0) <<  std::endl;
-    
-
-
-    // for (int i=0;i<myexprs.size();i++){
-    //     printf(std::to_string(myexprs[i]));
-    // }
 }
 
 void evaluation::add_kwargs_double(
@@ -75,21 +48,79 @@ void evaluation::add_kwargs_ndarray(
 
 int evaluation::execute()
 {
-
     double value_a=kwargs["a"];
     printf("the input a has value: %f\n",value_a);
 
-    //iterate through 
+    //iterate through the expressions and see what is the operator type.
+    int vec_size=exprs_copy.size();
+    //std::cout << vec_size << std::endl;
+    for (int i=0;i<vec_size;i++){
+
+        if (exprs_copy[i].get_op_type()== "Input"){
+            //int num_inputs=exprs_copy[i].get_inputs().size();
+            double input_value=kwargs[exprs_copy[i].get_op_name()];
+            result_=input_value;
+            
+            
+        }
+        else if (exprs_copy[i].get_op_type()== "Add"){
+            
+            int inputs_size=exprs_copy[i].get_inputs().size();
+            //std::cout<<inputs_size<<"this is the num2 of inputs for add"<<std::endl;
+            double sum=0;
+            for(int k=0;k<inputs_size;k++){
+                int expr_num=exprs_copy[i].get_inputs()[k]; //it is zero for expr id 0
+                double input_value=kwargs[exprs_copy[expr_num].get_op_name()]; //access expr 0's opname's i.e. a's value i.e. 5
+                //this will happen for every input
+                std::cout<<input_value<<"this should be the valur of input 0"<<std::endl;
+                //int sum=input_value;
+                sum=sum+input_value;
+                std::cout<<sum<<"this is the final sum"<<std::endl;
+                result_=sum;
+                
+            }
+            std::cout<<result_<<"printing result"<<std::endl;
+            
+
+
+
+        }
+
+        else if (exprs_copy[i].get_op_type()== "Mul"){
+            
+            int inputs_size=exprs_copy[i].get_inputs().size();
+            //std::cout<<inputs_size<<"this is the num2 of inputs for add"<<std::endl;
+            double sum=0;
+            for(int k=0;k<inputs_size;k++){
+                int expr_num=exprs_copy[i].get_inputs()[k]; //it is zero for expr id 0
+                double input_value=kwargs[exprs_copy[expr_num].get_op_name()]; //access expr 0's opname's i.e. a's value i.e. 5
+                //this will happen for every input
+                std::cout<<input_value<<"this should be the valur of input 0"<<std::endl;
+                //int sum=input_value;
+                sum=sum+input_value;
+                std::cout<<sum<<"this is the final sum"<<std::endl;
+                result_=sum;
+                
+            }
+            std::cout<<result_<<"printing result"<<std::endl;
+
+    }
+    
 
 
 
 
 
 
-    return -1;
+    
+}
+return 0;
 }
 
 double &evaluation::get_result()
 {
     return result_;
 }
+
+
+

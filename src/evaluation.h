@@ -6,12 +6,12 @@
 class evaluation
 {
     std::map<std::string,double>kwargs; 
-    std::vector<expression> copy_exprs;
-    // int expr_id_;
-    // const char *op_name_;
-    // const char *op_type_;
-    // int *inputs_;
-    // int num_inputs_;
+    std::vector<expression> exprs_copy;
+    int expr_id_;
+    std::string op_name_;
+    std::string op_type_;
+    int *inputs_;
+    int num_inputs_;
 public:
     
 
@@ -33,6 +33,17 @@ public:
 
     // return the variable computed by the last expression
     double &get_result();
+
+    // int get_expr_id_();
+
+    // std::string get_op_name_();
+
+    // std::string get_op_type_();
+
+    // int get_inputs_();
+    
+    // int get_num_inputs_();
+
 
 private:
     double result_;

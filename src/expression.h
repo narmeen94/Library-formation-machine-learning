@@ -15,6 +15,7 @@ class expression
     std::string op_name_;
     std::string op_type_;
     std::vector<int> inputs_;
+    int num_inputs_;
 public:
     expression(
         int expr_id,
@@ -39,6 +40,7 @@ public:
 
     std::string get_op_type();
     std::vector<int> get_inputs();
+    int get_num_inputs_();
    // void print_output(std::vector<expression>&exprs);
 
 
