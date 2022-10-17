@@ -18,12 +18,12 @@ int main()
     add_op_param_double(prog,"value",10);
     //expr_id=0, operand name is a,operand type is input,inputs0 is the pointers to "inputs". num_inputs is the number of inputs 
     //here, t0=a.input(); t1=Add(t0,t0)
-    int inputs1[] = {1, 2}; // t0 and t0 are two inputs 
+    int inputs1[] = {0, 1}; // t0 and t0 are two inputs 
     append_expression(prog, 4, "", "Sub", inputs1, 2);
-    int inputs2[]={4,0};
+    int inputs2[]={4,2};
     append_expression(prog, 5, "", "Mul", inputs2, 2);
-    int inputs3[]={5,3};
-    append_expression(prog, 6, "", "Add", inputs3, 2);
+    // int inputs3[]={5,3};
+    // append_expression(prog, 6, "", "Add", inputs3, 2);
 
     evaluation *eval = build(prog); //why like this? it is from libeasynn evaluation .returns a pointer
     //this gives the output print evaluation,key ,value.key=string,value=float

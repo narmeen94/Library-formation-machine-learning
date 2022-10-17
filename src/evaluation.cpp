@@ -16,7 +16,7 @@ evaluation::evaluation(const std::vector<expression> &exprs,std::map<std::string
     const_copy=const_;
     
     for (int i=0;i<int(exprs.size());i++){
-        std::cout << "expression number:"<< i<<std::endl;
+        std::cout << "expression number:"<< exprs_copy[i].get_id()<<std::endl;
         std::cout<< "this is expression id:"<< exprs_copy[i].get_id()<<""<<std::endl;
         std::cout<< "this is operand name:"<< exprs_copy[i].get_op_name()<<""<<std::endl;
         std::cout<< "this is operator type:"<<exprs_copy[i].get_op_type()<<""<<std::endl;
@@ -64,20 +64,14 @@ int evaluation::execute()
             //int num_inputs=exprs_copy[i].get_inputs().size();
             double input_value=kwargs[exprs_copy[i].get_op_name()];
             result_=input_value;
-            variables_[exprs_copy[i].expr_id_]=input_value;
+            variables_[exprs_copy[i].get_id()]=input_value;
             
             
         }
 
         else if (exprs_copy[i].get_op_type()== "Const"){
-
-            
-            
-           
-            
-
             double const_value=const_copy["value"];
-            variables_[i]=const_value;
+            variables_[exprs_copy[i].get_id()]=const_value;
             std::cout<<const_value<<"should be the output of const"<<std::endl;
             
             
@@ -90,15 +84,7 @@ int evaluation::execute()
             for(int k=0;k<inputs_size;k++){
                    int expr_num=exprs_copy[i].get_inputs()[k];
                    sum=sum+variables_[expr_num];
-                // int expr_num=exprs_copy[i].get_inputs()[k]; //it is zero for expr id 0
-                // double input_value=kwargs[exprs_copy[expr_num].get_op_name()]; //access expr 0's opname's i.e. a's value i.e. 5
-                // //this will happen for every input
-                // std::cout<<input_value<<"this should be the valur of input 0"<<std::endl;
-                // sum=input_value;
-                // sum=sum+input_value;
-                // //result_=result_+input_value;
-                // //std::cout<<sum<<"this is the final sum"<<std::endl;
-                // //result_=result_+sum-result_;
+                
                 
             }
             //std::cout<<sum<<"this is the final sum for add"<<std::endl;
@@ -106,34 +92,43 @@ int evaluation::execute()
             
             
             //result_=sum+result_;
-            variables_[i]=sum;
-            std::cout<<variables_[i]<<"  printing result for add"<<std::endl;
+            variables_[exprs_copy[i].get_id()]=sum;
+            std::cout<<variables_[exprs_copy[i].get_id()]<<"  printing result for add"<<std::endl;
 
         }
 
         else if (exprs_copy[i].get_op_type()== "Sub"){
             
-            int inputs_size=exprs_copy[i].get_inputs().size();
+            //int inputs_size=exprs_copy[i].get_inputs().size();
             //std::cout<<inputs_size<<"this is the num2 of inputs for add"<<std::endl;
-            double sum=0;
-            for(int k=0;k<inputs_size;k++){
-                   int expr_num=exprs_copy[i].get_inputs()[k];
-                   if (k==0){
-                    sum=variables_[expr_num];
-                   }
-                   else{
-                    sum=sum-variables_[expr_num];
+            // int inputs_size=exprs_copy[i].get_inputs().size();
+            // //std::cout<<inputs_size<<"this is the num2 of inputs for add"<<std::endl;
+            // double sub=variables_[0];
+            // for(int k=1;k<inputs_size;k++){
+            //        int expr_num=exprs_copy[i].get_inputs()[k];
+            //        sub=sub+variables_[expr_num];
+                
+                
+            
 
-                   }
-                   
-                   
-                
-                
-            }
+            double sum;
+            // for(int k=0;k<inputs_size;k++){
+                   int expr_num1=exprs_copy[i].get_inputs()[0];
+                   int expr_num2=exprs_copy[i].get_inputs()[1];
+                   sum=variables_[expr_num1]-variables_[expr_num2];
+            //     //    if (k==0){
+                //     sum=variables_[expr_num];
+                //    }
+                //    else{
+                //     sum=sum-variables_[expr_num];
+
+                //    }
+                      
+            // }
             
             //result_=sum+result_;
-            variables_[i]=sum;
-            std::cout<<variables_[i]<<"  printing result for Sub"<<std::endl;
+            variables_[exprs_copy[i].get_id()]=sum;
+            std::cout<<variables_[exprs_copy[i].get_id()]<<"  printing result for Sub"<<std::endl;
         }
 
 
@@ -156,9 +151,9 @@ int evaluation::execute()
                 // //result_=product;
                 
             }
-            variables_[i]=product;
+            variables_[exprs_copy[i].get_id()]=product;
             result_=product;
-            std::cout<<variables_[i]<<"printing result for mul"<<std::endl;
+            std::cout<<variables_[exprs_copy[i].get_id()]<<"printing result for mul"<<std::endl;
 
     }
     
