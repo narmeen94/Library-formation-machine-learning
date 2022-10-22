@@ -56,8 +56,8 @@ int add_op_param_ndarray(
     for (int i = 0; i != dim; ++i)
         printf("%zu,", shape[i]);
     printf(")\n");
-    //return prog->add_op_param_ndarray(key, dim, shape, data);
-    return 0;
+    return prog->add_op_param_ndarray(key, dim, shape, data);
+    //return 0;
 }
 
 evaluation *build(program *prog)
@@ -85,12 +85,13 @@ void add_kwargs_ndarray(
     size_t shape[],
     double data[])
 {
-    // printf("evaluation %p, key %s, value %p dim %d (",
-    //     eval, key, data, dim);
-    // for (int i = 0; i != dim; ++i)
-    //     printf("%zu,", shape[i]);
-    // printf(")\n");
-    // eval->add_kwargs_ndarray(key, dim, shape, data);
+    printf("evaluation %p, key %s, value %p dim %d (",
+        eval, key, data, dim);
+    for (int i = 0; i != dim; ++i)
+        printf("%zu,", shape[i]);
+    printf(")\n");
+    eval->add_kwargs_ndarray(key, dim, shape, data);
+
 }
 
 int execute(
@@ -101,7 +102,11 @@ int execute(
 {
     printf("evaluation %p, p_dim %p, p_shape %p, p_data %p\n",
         eval, p_dim, p_shape, p_data);   //%p is for the pointer values
-    int ret = eval->execute();
+
+        //modified for new execute proj3:
+    //int ret = eval->execute(eval, p_dim, p_shape, p_data);
+    int ret = eval->execute(); //modified again in pj3
+
     if (ret != 0) //????
         return ret;
     *p_dim = 0; //why?

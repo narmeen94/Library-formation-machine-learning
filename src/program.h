@@ -8,8 +8,9 @@ class expression;
 
 class program
 {
-    std::vector<expression> exprs_;
-    std::map<std::string,double>const_;
+    std::vector<expression> exprs_; //for the expression objects
+    //std::map<std::string,double>const_; //for the constants
+    //double op_param_;
 
 public:
     program();

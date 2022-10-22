@@ -16,17 +16,7 @@ void program::append_expression(
     int num_inputs)
 {
     expression newexp=expression(expr_id,op_name,op_type,inputs,num_inputs);
-    // std::cout <<"appending"<< std::endl;
-    // std::cout <<newexp.get_id() <<std::endl;
-    // std::cout << newexp.get_op_name() <<std::endl;
     exprs_.push_back(newexp);
-
-
-    
-   
-    //exprs_.push_back(expression(expr_id,op_name,op_type,inputs,num_inputs));
-    
-    //std::cout<< << std::endl;
     
 
 }
@@ -35,7 +25,7 @@ int program::add_op_param_double(
     const char *key,
     double value)
 {
-    const_["value"]=value;
+    // const_["value"]=value;
     return 0;
 }
 
@@ -51,7 +41,8 @@ int program::add_op_param_ndarray(
 
 evaluation *program::build() 
 {
-     evaluation *val=new evaluation(exprs_,const_); 
+     //evaluation *val=new evaluation(exprs_,const_); 
+     evaluation *val=new evaluation(exprs_); 
      return val;
 
     

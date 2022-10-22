@@ -15,7 +15,7 @@ void expression::add_op_param_double(
     const char *key,
     double value)
 {
-    
+    op_param_ = value;
 }
 
 void expression::add_op_param_ndarray(
@@ -31,12 +31,12 @@ int expression::get_id()
     return expr_id_;
 }
 
-std::string expression::get_op_name()
+std::string expression::get_op_name() 
 {
     return op_name_;
 }
 
-std::string expression::get_op_type()
+std::string expression::get_op_type() const
 {
     return op_type_;
 }
@@ -51,9 +51,9 @@ int expression::get_num_inputs_()
     return num_inputs_;
 }
 
-std::map<std::string,double> expression::get_const_()
+double expression::get_op_param() const
 {
-    return const_;
+    return op_param_;
 }
 
 

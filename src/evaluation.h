@@ -2,14 +2,22 @@
 #define EVALUATION_H
 
 #include "expression.h"
+#include "tensor.h"
+
 
 class evaluation
 {
-    std::map<std::string,double>kwargs; 
-    std::vector<expression> exprs_copy;
-    std::map<std::string,double>const_copy;
+    std::map<std::string,double>kwargs; //for inputs
+    //std::vector<expression> exprs_copy;// for expressions
+    //std::map<std::string,double>const_copy; //for constants
+    std::vector<std::shared_ptr<eval_op>> ops_; //for project 3
     
-    std::map<int,double>variables_;
+    //std::map<int,double>variables_; //for the scalar results
+
+    //added for proj3:
+    std::map<int, tensor> variables_;//for storing the expression numbers and corresponding tensors
+    //i am adding the below line myself
+    std::map<std::string, tensor> kwargs_; //for storing the key and value of the input for tensors
 
     int expr_id_;
     std::string op_name_;
@@ -17,9 +25,14 @@ class evaluation
     int *inputs_;
     int num_inputs_;
 public:
-    
+    //added for proj3:
+    //evaluation(const std::vector<expression> &exprs,eval_op_proto_map &proto_map);
+    evaluation(const std::vector<expression> &exprs);
 
-    evaluation(const std::vector<expression> &exprs,std::map<std::string,double>const_);
+    tensor &get_result();
+
+    //evaluation(const std::vector<expression> &exprs,std::map<std::string,double>const_);
+    
 
     void add_kwargs_double(
         const char *key,
@@ -31,17 +44,20 @@ public:
         size_t shape[],
         double data[]);
 
-    // return 0 for success
-    int execute();
+    // added for prj3:
+    //int execute(evaluation *eval,int *p_dim, size_t **p_shape, double **p_data);
+    int execute(); //modified again in pj3
 
 
     // return the variable computed by the last expression
-    double &get_result();
+    //double &get_result();
 
     
 
 private:
-    double result_;
+    //tensor result_; 
+    double result_; //changed from double to tensor for proj 3
+
 }; // class evaluation
 
 #endif // EVALUATION_H
