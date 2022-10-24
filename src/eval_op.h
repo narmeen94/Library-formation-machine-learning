@@ -23,7 +23,7 @@ protected:
     eval_op(const expression &expr);
 
 public:
-    eval_op(const expression &expr);
+    //eval_op(const expression &expr);
 
     virtual ~eval_op();
 

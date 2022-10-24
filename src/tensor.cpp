@@ -16,7 +16,16 @@ data_(1, v)
 tensor::tensor(int dim, size_t shape[], double data[]):
 shape_(shape, shape+dim) 
 {
-    // calculate N as shape[0]*shape[1]*...*shape[dim-1]...data_.assign(data, data+N);
+    // calculate N as shape[0]*shape[1]*...*shape[dim-1]
+    int N=1;
+    for (int i=0;i<dim;i++)
+    {
+        N=N*shape[i];
+
+    }
+    //int N=sizeof(shape_)/sizeof(shape_[0]);
+    
+    data_.assign(data, data+N);
 }
 
 double tensor::item() const 

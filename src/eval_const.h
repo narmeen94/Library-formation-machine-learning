@@ -9,6 +9,7 @@
 #include <assert.h>
 
 typedef std::map<std::string, std::shared_ptr<eval_op>> eval_op_proto_map;
+
 class eval_const: public eval_op 
 {
     tensor value_;

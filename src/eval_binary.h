@@ -1,6 +1,6 @@
 
-#ifndef EVAL_BINARY_H
-#define EVAL_BINARY_H
+// #ifndef EVAL_BINARY_H
+// #define EVAL_BINARY_H
 
 #include <vector>
 #include <string>
@@ -22,4 +22,4 @@ public:
 
 }; // class eval_binary
 
-#endif
+//#endif

@@ -61,7 +61,7 @@
 //     }
 // }
 
-evaluation::evaluation(const std::vector<expression> &exprs) 
+evaluation::evaluation(const std::vector<expression> &exprs):result_(0) //????? should result be here?
 {
     for (auto &expr: exprs) 
     {
@@ -88,15 +88,7 @@ void evaluation::add_kwargs_ndarray(
 {
 }
 
-// int evaluation::execute(evaluation *eval,int *p_dim, size_t **p_shape, double **p_data)
-// {
 
-//     tensor &res = eval->get_result();
-//     *p_dim = res.get_dim();
-//     *p_shape = res.get_shape_array();
-//     *p_data = res.get_data_array();
-//     return 0;
-// }
 
 
 int evaluation::execute() 
@@ -195,7 +187,7 @@ int evaluation::execute()
 // return 0;
 // }
 
-double &evaluation::get_result()
+tensor &evaluation::get_result()
 {
     return result_;
 }

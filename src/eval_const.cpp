@@ -3,7 +3,7 @@
 #include "expression.h"
 
 
-eval_const::eval_const(const expression &expr):eval_op(expr), value_(expr.get_op_param()) //removed the "value" from the brackets
+eval_const::eval_const(const expression &expr):eval_op(expr), value_(expr.get_op_param("value")) //removed the "value" from the brackets
 {
 
 }

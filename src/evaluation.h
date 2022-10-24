@@ -3,6 +3,9 @@
 
 #include "expression.h"
 #include "tensor.h"
+#include <memory>
+#include "eval_op.h"
+
 
 
 class evaluation
@@ -55,8 +58,8 @@ public:
     
 
 private:
-    //tensor result_; 
-    double result_; //changed from double to tensor for proj 3
+    
+    tensor result_; //changed from double to tensor for proj 3
 
 }; // class evaluation
 

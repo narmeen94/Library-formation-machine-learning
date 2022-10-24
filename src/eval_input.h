@@ -7,6 +7,7 @@
 #include "expression.h"
 #include "eval_op.h"
 #include <assert.h>
+#include "eval_const.h"
 
 
 class eval_input: public eval_op 
