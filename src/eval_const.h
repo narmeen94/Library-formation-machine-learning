@@ -1,3 +1,6 @@
+#ifndef EVAL_CONST_H
+ #define EVAL_CONST_H
+
 #include <vector>
 #include <string>
 #include <map>
@@ -20,15 +23,20 @@ public:
     eval_const(const expression &expr);
     
 
-    //void eval(vars_type &variables, const kwargs_type &kwargs) override;
+    void eval(vars_type &variables, const kwargs_type &kwargs) override; //should it be here?
 
-    std::shared_ptr<eval_op> clone(const expression &expr) override;
+    std::shared_ptr<eval_op> clone(const expression &expr) override; //it is ok 
     
-    //void eval(vars_type &variables, const kwargs_type &kwargs);
+   
 
-     void eval_const::store_prototype(eval_op_proto_map &proto_map);
-    //void eval_const::store_prototype(proto_map_);
+    static void store_prototype(eval_op_proto_map &proto_map)
+    {
+         assert(proto_map.find("Const") == proto_map.end());
+         proto_map["Const"] = std::make_shared<eval_const>();
+    } 
+     //eval_const::store_prototype(proto_map_);
 
     
     
 }; // class eval_const
+#endif

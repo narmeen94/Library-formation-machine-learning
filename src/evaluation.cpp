@@ -9,6 +9,7 @@
 #include <memory>
 #include "expression.h"
 #include "eval_op.h"
+#include "eval_op_prototypes.h"
 
 // evaluation::evaluation(const std::vector<expression> &exprs,std::map<std::string,double>const_) //a vector can be passed as a value or refernce.const so the vector exprs is not changed.just read.
 //     : result_(0)  //constructor initializer

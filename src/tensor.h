@@ -11,6 +11,7 @@ class tensor {
 private:
     std::vector<size_t> shape_;
     std::vector<double> data_;
+    int dim_; //added myself to remove unreference error
 
 public:
     tensor(); // scalar 0

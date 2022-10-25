@@ -8,6 +8,7 @@
 #include <memory>
 #include "tensor.h"
 #include "expression.h"
+//#include "eval_op_prototypes.h"
 
 typedef std::map<int, tensor> vars_type;
 typedef std::map<std::string, tensor> kwargs_type;
@@ -20,6 +21,8 @@ protected:
     std::vector<int> inputs_;
 
     eval_op(): expr_id_(-1) {}      //for prototyping, adding default constructors
+    //should the above come here or in cpp?
+    
     eval_op(const expression &expr);
 
 public:

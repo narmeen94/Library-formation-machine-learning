@@ -35,7 +35,7 @@ int program::add_op_param_ndarray(
     size_t shape[],
     double data[])
 {
-    return -1;
+    return 0;
 }
 
 

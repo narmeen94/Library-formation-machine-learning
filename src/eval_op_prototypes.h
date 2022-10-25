@@ -3,6 +3,8 @@
 
 
 #include "eval_op.h"
+//#include "eval_const.h"
+typedef std::map<std::string, std::shared_ptr<eval_op>> eval_op_proto_map;
 
 class eval_op_prototypes 
 {

@@ -1,6 +1,6 @@
 
-// #ifndef EVAL_BINARY_H
-// #define EVAL_BINARY_H
+ #ifndef EVAL_BINARY_H
+ #define EVAL_BINARY_H
 
 #include <vector>
 #include <string>
@@ -12,7 +12,7 @@
 
 class eval_binary: public eval_op 
 {
-    virtual tensor compute(const tensor &a, const tensor &b) = 0;
+    virtual tensor compute(const tensor &a, const tensor &b) = 0; //no implementation since it is virtual
 
 public:
 
@@ -22,4 +22,4 @@ public:
 
 }; // class eval_binary
 
-//#endif
+#endif

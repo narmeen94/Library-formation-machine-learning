@@ -11,6 +11,9 @@
 
 class eval_add: public eval_binary 
 {
+public:
+    eval_add(const expression &expr); //adding constructor myself
+    
     tensor compute(const tensor &a, const tensor &b) override;
 
 }; // class eval_add

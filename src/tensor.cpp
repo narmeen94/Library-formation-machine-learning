@@ -63,3 +63,8 @@ double *tensor::get_data_array()
 {
     return &data_[0];
 }
+
+int tensor::get_dim() const  //added to remove unrefernce error
+{
+    return dim_;
+}
