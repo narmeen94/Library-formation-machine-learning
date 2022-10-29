@@ -1,6 +1,11 @@
 #include "eval_binary.h"
 #include <assert.h>
 
+eval_binary::~eval_binary() 
+{
+
+}
+
 eval_binary::eval_binary(const expression &expr)
 {
 

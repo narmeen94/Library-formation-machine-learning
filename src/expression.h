@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include "tensor.h"
 
 class evaluation;
 
@@ -16,8 +17,8 @@ class expression
     std::string op_type_;
     std::vector<int> inputs_;
     int num_inputs_;
-    double op_param_;  //for consts
-    //std::map<std::string,double>const_;
+    
+    std::map<std::string,tensor>op_param_ ; //for consts
 public:
     expression(
         int expr_id,
@@ -36,16 +37,18 @@ public:
         size_t shape[],
         double data[]);
 
-    int get_id();
+    int get_id() const;
 
-    std::string get_op_name() ;
+    std::string get_op_name() const;
 
     std::string get_op_type() const;
-    std::vector<int> get_inputs();
+
+    std::vector<int> get_inputs() const;
+
     int get_num_inputs_();
-    //std::map<std::string,double> get_const_();
-    double get_op_param()const;
-   // void print_output(std::vector<expression>&exprs);
+
+    tensor get_op_param(std::string) const;
+   
 
 
     

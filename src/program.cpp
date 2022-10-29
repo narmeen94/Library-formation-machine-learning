@@ -2,6 +2,7 @@
 #include "evaluation.h"
 #include "expression.h"
 #include <iostream> 
+#include "tensor.h"
 
 program::program()
 {
@@ -25,7 +26,8 @@ int program::add_op_param_double(
     const char *key,
     double value)
 {
-    // const_["value"]=value;
+    exprs_.back().add_op_param_double(key,value);
+    
     return 0;
 }
 
@@ -35,6 +37,8 @@ int program::add_op_param_ndarray(
     size_t shape[],
     double data[])
 {
+    exprs_.back().add_op_param_ndarray(key,dim,shape,data);
+    
     return 0;
 }
 

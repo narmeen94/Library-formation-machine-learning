@@ -71,7 +71,7 @@ evaluation *build(program *prog)
 void add_kwargs_double(
     evaluation *eval,
     const char *key,
-    double value)
+    double value) 
 {
     printf("evaluation %p, key %s, value %f\n",
         eval, key, value);
@@ -94,36 +94,42 @@ void add_kwargs_ndarray(
 
 }
 //modified for proj 3:
-int execute(evaluation *eval,int *p_dim, size_t **p_shape, double **p_data)
-{
-    // logging and error checking
+// int execute(evaluation *eval,int *p_dim, size_t **p_shape, double **p_data)
+// {
+//     // logging and error checking
 
+//     printf("evaluation %p, p_dim %p, p_shape %p, p_data %p\n",eval, p_dim, p_shape, p_data); 
+
+//     tensor &res = eval->get_result();
+//     *p_dim = res.get_dim();
+//     *p_shape = res.get_shape_array();
+//     *p_data = res.get_data_array();
+//      eval->execute();
+//     return 0;
+// }
+
+int execute(
+    evaluation *eval,
+    int *p_dim,
+    size_t **p_shape,
+    double **p_data)
+{
+    
+    printf("evaluation %p, p_dim %p, p_shape %p, p_data %p\n",
+        eval, p_dim, p_shape, p_data);   //%p is for the pointer values
+
+        //modified for new execute proj3:
+    //int ret = eval->execute(eval, p_dim, p_shape, p_data);
+    int ret = eval->execute(); //modified again in pj3
+
+    if (ret != 0) //????
+        return ret;
     tensor &res = eval->get_result();
     *p_dim = res.get_dim();
     *p_shape = res.get_shape_array();
     *p_data = res.get_data_array();
+        //  eval->execute();
+        //from evaluation.cpp
+    fflush(stdout); //all buffered charcters are transmitted to the terminal
     return 0;
 }
-
-// int execute(
-//     evaluation *eval,
-//     int *p_dim,
-//     size_t **p_shape,
-//     double **p_data)
-// {
-    
-//     // printf("evaluation %p, p_dim %p, p_shape %p, p_data %p\n",
-//     //     eval, p_dim, p_shape, p_data);   //%p is for the pointer values
-
-//     //     //modified for new execute proj3:
-//     // //int ret = eval->execute(eval, p_dim, p_shape, p_data);
-//     // int ret = eval->execute(); //modified again in pj3
-
-//     // if (ret != 0) //????
-//     //     return ret;
-//     // *p_dim = 0; //why?
-//     // *p_shape = nullptr; //why?
-//     // *p_data = &eval->get_result(); //why &eval?     //from evaluation.cpp
-//     // fflush(stdout); //all buffered charcters are transmitted to the terminal
-//     // return 0;
-// }

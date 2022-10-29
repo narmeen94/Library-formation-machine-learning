@@ -1,10 +1,10 @@
 #ifndef EVAL_OP_H
 #define EVAL_OP_H
 
-#include <vector>
-#include <string>
+
+
 #include <map>
-#include <iostream>
+
 #include <memory>
 #include "tensor.h"
 #include "expression.h"
@@ -26,16 +26,18 @@ protected:
     eval_op(const expression &expr);
 
 public:
-    //eval_op(const expression &expr);
+    
 
     virtual ~eval_op();
 
     virtual void eval(vars_type &variables, const kwargs_type &kwargs)=0;
 
     virtual std::shared_ptr<eval_op> clone(const expression &expr) = 0;
+
+    int get_id() const;  //by alvaro
     
     
-    // void eval(vars_type &variables, const kwargs_type &kwargs);
+    
 
 
 }; // class eval_op

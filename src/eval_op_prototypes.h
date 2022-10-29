@@ -12,6 +12,7 @@ class eval_op_prototypes
 
     eval_op_prototypes(const eval_op_prototypes &) = delete;      // prevent creation of additional instances
     eval_op_prototypes();
+    
     eval_op_proto_map proto_map_;
 
 public:

@@ -16,9 +16,17 @@ class eval_binary: public eval_op
 
 public:
 
-    eval_binary(const expression &expr);
+    virtual ~eval_binary();
     
     void eval(vars_type &variables, const kwargs_type &kwargs) final;
+
+protected:
+//since eval_binary is a base class for eval add and eval mul etc, it should have a virtual destrcutor too. let's follow the strategy in eval_op
+
+    eval_binary() {}      
+
+    eval_binary(const expression &expr);
+
 
 }; // class eval_binary
 
