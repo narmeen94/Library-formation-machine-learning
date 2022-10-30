@@ -8,6 +8,12 @@ eval_add::eval_add(const expression &expr):eval_binary(expr) //initializing base
 
 }
 
+std::shared_ptr<eval_op> eval_add::clone(const expression &expr) 
+{
+    return std::make_shared<eval_add>(expr);
+}
+
+
 tensor eval_add::compute(const tensor &a, const tensor &b) 
 {
 
@@ -18,6 +24,10 @@ tensor eval_add::compute(const tensor &a, const tensor &b)
     //verifying if a and b have same shape:
     assert(a_copy.get_dim()==b_copy.get_dim());
 
+    //size_t *size_a = a_copy.get_shape_array();
+    //size_t S=size_a[0];
+    
+
     //for scalar:
     if (a_copy.get_dim()==0)
     {
@@ -27,33 +37,67 @@ tensor eval_add::compute(const tensor &a, const tensor &b)
         return c_tensor;
     }
 
-    else if (a_copy.get_dim()==1)
+    //for other than scalar
+    if (a_copy.get_dim()>0)
+    {
+        size_t *shape_a = a_copy.get_shape_array();
+        size_t N=1;
+        double *data_a=a_copy.get_data_array();
+        double *data_b=b_copy.get_data_array();
 
-    size_t *shape_a = a_copy.get_shape_array();
-    
-    //int size_int=int(a_copy.get_shape_array());
-    //shape=a_copy.get_shape_array();
 
-    //for (size_t i=0;i< shape_a[0];)
 
-    
+        for (size_t i=0;i<size_t(a_copy.get_dim());i++){
+
+            N=N*shape_a[i];
+
+        }
+
+        double data_c[N]={0};
+        for (size_t i=0;i<N;i++){
+            data_c[i]= data_a[i]+data_b[i];
+        }
+
+        tensor c=tensor(a_copy.get_dim(),shape_a,data_c);
+        return c;
+                               
         
 
-
-    
-
-    
-
-   
-
-
-    // make sure a and b to have the same shape... 
-    // create c to have the same shape as a and b... 
-    // add elements of a and b to obtain elements of creturn c;
-    return tensor();
+    }
 }
 
-std::shared_ptr<eval_op> eval_add::clone(const expression &expr) 
-{
-    return std::make_shared<eval_op>(expr);
-}
+    // else if (a_copy.get_dim()==1)
+    // {
+    //     //size_t *size_a = a_copy.get_shape_array();
+    //     // size_t S=size_a[0];
+    //     double data_c[S]={0};
+        
+    //     for (size_t i=0;i<S;i++)
+    //     {
+    //         data_c[i]=a.at(i)+b.at(i);
+
+    //     }
+
+    //     tensor c=tensor(a_copy.get_dim(),a_copy.get_shape_array(),data_c);
+    //     return c;
+
+    // }
+
+    // else
+    // {
+    //     size_t size_matrix=size_a[0]*size_a[1];
+    //     double data_c[size_matrix]={0};
+
+    //     for(size_t i=0;i<size_a[0];i++)
+    //     {
+    //         for(size_t j=0;j<size_a[1];j++)
+    //         {
+    //             data_c[j]
+
+    //         }
+    //     }
+
+    // }
+    //return tensor();
+
+

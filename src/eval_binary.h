@@ -12,6 +12,7 @@
 
 class eval_binary: public eval_op 
 {
+    std::vector<int> inputs_;
     virtual tensor compute(const tensor &a, const tensor &b) = 0; //no implementation since it is virtual
 
 public:

@@ -21,7 +21,7 @@ protected:
     std::vector<int> inputs_;
 
     eval_op(): expr_id_(-1) {}      //for prototyping, adding default constructors
-    //should the above come here or in cpp?
+    
     
     eval_op(const expression &expr);
 
