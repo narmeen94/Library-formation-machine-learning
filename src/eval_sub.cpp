@@ -53,13 +53,22 @@ tensor eval_sub::compute(const tensor &a, const tensor &b)
 
         }
 
-        double data_c[N]={0};
+        // double data_c[N]={0};
+        // for (size_t i=0;i<N;i++){
+        //     data_c[i]= data_a[i]-data_b[i];
+        // }
+        std::vector<double> data_c;
         for (size_t i=0;i<N;i++){
-            data_c[i]= data_a[i]-data_b[i];
+            //data_c[i]= data_a[i]+data_b[i];
+            data_c.push_back(data_a[i]-data_b[i]);
         }
-
-        tensor c=tensor(a_copy.get_dim(),shape_a,data_c);
+        
+        double *data_c_array=data_c.data();
+        tensor c=tensor(a_copy.get_dim(),shape_a,data_c_array);
         return c;
+
+        // tensor c=tensor(a_copy.get_dim(),shape_a,data_c);
+        // return c;
                                
         
 

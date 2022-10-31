@@ -3,6 +3,8 @@
 #include "eval_input.h"
 #include "eval_add.h"
 #include "eval_sub.h"
+#include "eval_mul.h"
+
 
 
 eval_op_prototypes::eval_op_prototypes() 
@@ -11,7 +13,7 @@ eval_op_prototypes::eval_op_prototypes()
       eval_input::store_prototype(proto_map_);
       eval_add::store_prototype(proto_map_);
       eval_sub::store_prototype(proto_map_);
-    //   eval_mul::store_prototype(proto_map_);
+      eval_mul::store_prototype(proto_map_);
         
 }
 eval_op_prototypes &eval_op_prototypes::instance() 

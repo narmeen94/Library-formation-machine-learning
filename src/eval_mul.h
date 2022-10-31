@@ -1,8 +1,12 @@
+#ifndef EVAL_MUL_H
+#define EVAL_MUL_H
+
 #include "tensor.h"
 #include "expression.h"
 #include "eval_binary.h"
 #include "eval_op_prototypes.h"
 #include "eval_op.h"
+#include <assert.h>
 
 class eval_mul: public eval_binary 
 {
@@ -22,5 +26,5 @@ public:
          proto_map["Mul"] = std::make_shared<eval_mul>();
     } 
 
-}; // class eval_add
+}; // class eval_mul
 #endif
