@@ -10,10 +10,12 @@
 #include "expression.h"
 #include "eval_op.h"
 
+class eval_op;
+
 class eval_binary: public eval_op 
 {
     std::vector<int> inputs_;
-    //int expr_id_;
+    //int expr_id;
     virtual tensor compute(const tensor &a, const tensor &b) = 0; //no implementation since it is virtual
 
 public:

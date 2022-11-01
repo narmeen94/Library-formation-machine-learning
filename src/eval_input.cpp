@@ -6,7 +6,7 @@ eval_input::eval_input(const expression &expr):eval_op(expr)//removed value_()
 
 }
 
-void eval_input::eval(vars_type &variables, const kwargs_type &kwargs) //should it be here?
+void eval_input::eval( vars_type &variables, const kwargs_type &kwargs) //should it be here?
 {
     //variables[expr_id_] = value_;
     //variables[expr_id_] = kwargs[op_name_];
