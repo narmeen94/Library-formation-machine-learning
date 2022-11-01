@@ -1,10 +1,8 @@
+#ifndef EVAL_INPUT_H
+#define EVAL_INPUT_H
 
-#include <vector>
-#include <string>
-#include <map>
-#include <iostream>
-//#include "tensor.h"
-//#include "expression.h"
+#include "tensor.h"
+#include "expression.h"
 #include "eval_op.h"
 //#include <assert.h>
 #include "eval_const.h"
@@ -13,7 +11,7 @@
 
 typedef std::map<std::string, std::shared_ptr<eval_op>> eval_op_proto_map;
 
-class eval_op;
+//class eval_op;
 
 class eval_input: public eval_op 
 {
@@ -25,7 +23,7 @@ public:
     eval_input(const expression &expr);
     
 
-    void eval(vars_type &variables, const kwargs_type &kwargs); 
+    void eval(vars_type &variables, const kwargs_type &kwargs) override; 
 
     std::shared_ptr<eval_op> clone(const expression &expr) override; //it is ok 
     
@@ -41,3 +39,4 @@ public:
     
     
 }; // class eval_input
+#endif

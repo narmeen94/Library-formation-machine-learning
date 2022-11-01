@@ -6,10 +6,13 @@
 
 
 #include "tensor.h"
-#include "expression.h"
+//#include "expression.h"
 #include "eval_binary.h"
-#include "eval_op_prototypes.h"
-#include "eval_op.h"
+//#include "eval_op_prototypes.h"
+//#include "eval_op.h"
+class eval_binary;
+
+typedef std::map<std::string, std::shared_ptr<eval_op>> eval_op_proto_map;
 
 class eval_add: public eval_binary 
 {

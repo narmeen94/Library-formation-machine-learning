@@ -130,6 +130,6 @@ int execute(
     *p_data = res.get_data_array();
         //  eval->execute();
         //from evaluation.cpp
-    fflush(stdout); //all buffered charcters are transmitted to the terminal
+    //fflush(stdout); //all buffered charcters are transmitted to the terminal
     return 0;
 }

@@ -5,13 +5,20 @@
 
 
 
-#include "tensor.h"
-#include "expression.h"
+//#include "tensor.h"
+//#include "expression.h"
 #include "eval_binary.h"
-#include "eval_op_prototypes.h"
-#include "eval_op.h"
+//#include "eval_op_prototypes.h"
+//#include "eval_op.h"
+//#include <memory>
+//#include <map>
+
+typedef std::map<std::string, std::shared_ptr<eval_op>> eval_op_proto_map;
+
+class eval_binary;
 
 class eval_sub: public eval_binary 
+
 {
 public:
     eval_sub() {}
@@ -29,5 +36,5 @@ public:
          proto_map["Sub"] = std::make_shared<eval_sub>();
     } 
 
-}; // class eval_add
+}; // class eval_sub
 #endif

@@ -105,7 +105,7 @@ int evaluation::execute()
     }
     std::cout<<"this is ops_ size: "<<ops_.size()<<std::endl;
     //result_=variables_[(ops_.size()-1)];
-    result_=variables_[ops_.back()->get_id()];
+    result_=variables_[ops_.back()->get_id_op()];
 
     return 0;
 }

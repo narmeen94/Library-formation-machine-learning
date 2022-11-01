@@ -34,7 +34,7 @@ public:
 
     virtual std::shared_ptr<eval_op> clone(const expression &expr) = 0;
 
-    int get_id() const;  //by alvaro
+    int get_id_op() const; 
     
     
     

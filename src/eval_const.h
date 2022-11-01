@@ -23,7 +23,7 @@ public:
     eval_const(const expression &expr);
     
 
-    void eval(vars_type &variables, const kwargs_type &kwargs) override; //should it be here?
+    void eval(vars_type &variables, const kwargs_type &kwargs) override;//should it be here?
 
     std::shared_ptr<eval_op> clone(const expression &expr) override; //it is ok 
     

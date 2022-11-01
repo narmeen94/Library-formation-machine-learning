@@ -1,12 +1,16 @@
 #ifndef EVAL_MUL_H
 #define EVAL_MUL_H
 
-#include "tensor.h"
-#include "expression.h"
+//#include "tensor.h"
+//#include "expression.h"
 #include "eval_binary.h"
-#include "eval_op_prototypes.h"
-#include "eval_op.h"
+//#include "eval_op_prototypes.h"
+//#include "eval_op.h"
 #include <assert.h>
+
+typedef std::map<std::string, std::shared_ptr<eval_op>> eval_op_proto_map;
+
+class eval_binary;
 
 class eval_mul: public eval_binary 
 {

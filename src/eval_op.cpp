@@ -19,8 +19,9 @@ eval_op::eval_op(const expression &expr):expr_id_(expr.get_id()),op_name_(expr.g
 //     assert(false); // should be provided by derived classes
 // }
 
-int eval_op::get_id() const
+int eval_op::get_id_op() const
 {
     return expr_id_;
+    //return expr.get_id()
 
 }

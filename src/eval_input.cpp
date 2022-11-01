@@ -1,6 +1,5 @@
 #include "eval_input.h"
-#include <iostream>
-#include <string>
+#include <memory>
 
 eval_input::eval_input(const expression &expr):eval_op(expr)//removed value_()
 {
