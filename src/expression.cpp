@@ -8,6 +8,7 @@ expression::expression(
     int *inputs,
     int num_inputs):expr_id_(expr_id), op_name_(op_name), op_type_(op_type),inputs_(inputs, inputs+num_inputs)
 {
+    std::cout<<"the expr_id from expression.cpp is: "<<expr_id_<<std::endl;
  
 
 }

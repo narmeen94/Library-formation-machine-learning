@@ -61,8 +61,8 @@
     //     }
     // }
 
-evaluation::evaluation(const std::vector<expression> &exprs) 
-{
+evaluation::evaluation(const std::vector<expression> &exprs)
+{   
     for (auto &expr: exprs) 
     {
         std::shared_ptr<eval_op> p= eval_op_prototypes::instance().locate(expr.get_op_type());
@@ -104,6 +104,7 @@ int evaluation::execute()
         op->eval(variables_, kwargs_);
     }
     std::cout<<"this is ops_ size: "<<ops_.size()<<std::endl;
+    //std::cout<<"this is expr_id from evaluation.cpp: "<<<<std::endl;
     //result_=variables_[(ops_.size()-1)];
     result_=variables_[ops_.back()->get_id_op()];
 

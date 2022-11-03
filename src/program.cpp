@@ -18,6 +18,8 @@ void program::append_expression(
 {
     expression newexp=expression(expr_id,op_name,op_type,inputs,num_inputs);
     exprs_.push_back(newexp);
+
+    std::cout<<"the exp_id from program.cpp is: "<<expr_id<<std::endl;
     
 
 }

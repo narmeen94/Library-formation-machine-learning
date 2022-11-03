@@ -24,11 +24,11 @@ class evaluation
     std::vector<std::shared_ptr<eval_op>> ops_; //for storing the key and value of the input for tensors
     tensor result_; //changed from double to tensor for proj 3
 
-    // int expr_id_;
-    // std::string op_name_;
-    // std::string op_type_;
-    // int *inputs_;
-    // int num_inputs_;
+    int expr_id_;
+    std::string op_name_;
+    std::string op_type_;
+    int *inputs_;
+    int num_inputs_;
 public:
     //added for proj3:
     

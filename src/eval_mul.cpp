@@ -18,44 +18,45 @@ tensor eval_mul::compute(const tensor &a, const tensor &b)
 
     size_t *shape_a=a_copy.get_shape_array();
     size_t *shape_b=b_copy.get_shape_array();
+    double *data_a=a_copy.get_data_array();
+    double *data_b=b_copy.get_data_array();
 
     //for a and b scalars
 
     if((a_copy.get_dim()==0)&&(b_copy.get_dim()==0))
     {
-        return tensor(a_copy.get_data_array()[0]*b_copy.get_data_array()[0]);
+        return tensor(data_a[0]*data_b[0]);
     }
 
     
 
-    double *data_a=a_copy.get_data_array();
-    double *data_b=b_copy.get_data_array();
+    
 
-    std::vector<double>data_c_vec;
+    std::vector<double>data_c;
 
     //a scalar, b tensor:
 
     if((a_copy.get_dim()==0)&&(b_copy.get_dim() !=0))
     {
-        size_t N=shape_b[0];
+        size_t N=1;
 
-        for(int i=1;i!=b_copy.get_dim();i++)
+        for(int i=0;i!=b_copy.get_dim();i++)
         {
             N=N*shape_b[i];
         }
 
         for (size_t i=0;i!=N;i++)
         {
-            data_c_vec.push_back(data_b[i]*data_a[0]);
+            data_c.push_back(data_b[i]*data_a[0]);
         }
 
-        double *data_c =&data_c_vec[0];
-        return tensor(b_copy.get_dim(),shape_b,data_c);
+        double *data_c_array=data_c.data();
+        return tensor(b_copy.get_dim(),shape_b,data_c_array);
     }
 
     //b scalar, a tensor:
 
-    if((b_copy.get_dim()==0)&&(a_copy.get_dim() !=0))
+    else if((b_copy.get_dim()==0)&&(a_copy.get_dim() !=0))
     {
         size_t N=shape_a[0];
 
@@ -66,15 +67,15 @@ tensor eval_mul::compute(const tensor &a, const tensor &b)
 
         for (size_t i=0;i!=N;i++)
         {
-            data_c_vec.push_back(data_a[i]*data_b[0]);
+            data_c.push_back(data_a[i]*data_b[0]);
         }
 
-        double *data_c =&data_c_vec[0];
-        return tensor(a_copy.get_dim(),shape_a,data_c);
+        double *data_c_array=data_c.data();
+        return tensor(a_copy.get_dim(),shape_a,data_c_array);
     }
-
+    else{
     //both tensors
-    double elem=0;
+    double c=0;
 
     for(size_t i=0;i!=a_copy.get_shape_array()[0];i++)
     {
@@ -82,17 +83,18 @@ tensor eval_mul::compute(const tensor &a, const tensor &b)
         {
             for(size_t k=0;k!=a_copy.get_shape_array()[1];k++)
             {
-                elem=elem+(a_copy.at(i,k)*b_copy.at(k,j));
+                c+=(a_copy.at(i,k)*b_copy.at(k,j));
 
             }
-            data_c_vec.push_back(elem);
-            elem=0;
+            data_c.push_back(c);
+            c=0;
         }
     }
 
-    double *data_c=&data_c_vec[0];
-    size_t shape_c[2]={a_copy.get_shape_array()[0],b_copy.get_shape_array()[1]};
-    return tensor(2,shape_c,data_c);
+    double *data_c_array=data_c.data();
+    size_t shape_c[2]={shape_a[0],shape_b[1]};
+    return tensor(2,shape_c,data_c_array);
+    }
 
 
 

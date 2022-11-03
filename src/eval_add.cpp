@@ -23,20 +23,21 @@ tensor eval_add::compute(const tensor &a, const tensor &b)
 
 
     //verifying if a and b have same shape:
-     assert(a_copy.get_dim()==b_copy.get_dim());
-     int dim=a_copy.get_dim();
+     assert(a_copy.get_dim()==b_copy.get_dim());  //when i used if , warning:control reaches end of non-void function
+
+     int dim_c=a_copy.get_dim();
 
      size_t *shape_a = a_copy.get_shape_array();
-     size_t *shape_b = b_copy.get_shape_array();
+     
 
-     for(int i=0;i!=dim;i++)
-     {
-        assert(shape_a[i]==shape_b[i]);
-     }
+    //  for(int i=0;i!=dim_c;i++)
+    //  {
+    //     assert(shape_a[i]==shape_b[i]);
+    //  }
 
      //a and b scalars:
 
-     if(!dim)
+     if(a_copy.get_dim()==0)
      {
         return tensor(a_copy.get_data_array()[0]+b_copy.get_data_array()[0]);
      }
@@ -46,20 +47,21 @@ tensor eval_add::compute(const tensor &a, const tensor &b)
      double *data_a=a_copy.get_data_array();
      double *data_b=b_copy.get_data_array();
 
-     size_t N=shape_a[0];
-     for(int i=1;i!=dim;i++)
+     size_t N=1;
+     for(int i=0;i!=dim_c;i++)
      {
         N=N*shape_a[i];
      }
 
-     std::vector<double>data_c_vec;
+     std::vector<double>data_c;
+
      for(size_t i=0;i!=N;i++)
      {
-        data_c_vec.push_back(data_a[i]+data_b[i]);
+        data_c.push_back(data_a[i]+data_b[i]);
      }
 
-     double *data_c=&data_c_vec[0];
-     return tensor(dim,shape_a,data_c);
+     double *data_c_array=data_c.data();
+     return tensor(dim_c,shape_a,data_c_array);
 }
 
 
