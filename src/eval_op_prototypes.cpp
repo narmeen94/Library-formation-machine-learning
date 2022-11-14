@@ -4,6 +4,8 @@
 #include "eval_add.h"
 #include "eval_sub.h"
 #include "eval_mul.h"
+#include "eval_relu.h"
+#include "eval_flatten.h"
 
 
 
@@ -14,6 +16,8 @@ eval_op_prototypes::eval_op_prototypes()
       eval_add::store_prototype(proto_map_);
       eval_sub::store_prototype(proto_map_);
       eval_mul::store_prototype(proto_map_);
+      eval_relu::store_prototype(proto_map_);
+      eval_flatten::store_prototype(proto_map_);
         
 }
 eval_op_prototypes &eval_op_prototypes::instance() 
