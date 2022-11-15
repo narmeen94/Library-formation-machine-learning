@@ -6,6 +6,8 @@
 #include "eval_mul.h"
 #include "eval_relu.h"
 #include "eval_flatten.h"
+#include "eval_input2d.h"
+
 
 
 
@@ -18,6 +20,7 @@ eval_op_prototypes::eval_op_prototypes()
       eval_mul::store_prototype(proto_map_);
       eval_relu::store_prototype(proto_map_);
       eval_flatten::store_prototype(proto_map_);
+      eval_input2d::store_prototype(proto_map_);
         
 }
 eval_op_prototypes &eval_op_prototypes::instance() 
