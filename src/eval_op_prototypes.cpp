@@ -8,6 +8,7 @@
 #include "eval_flatten.h"
 #include "eval_input2d.h"
 #include "eval_linear.h"
+#include "eval_maxpool2d.h"
 
 
 
@@ -23,6 +24,7 @@ eval_op_prototypes::eval_op_prototypes()
       eval_flatten::store_prototype(proto_map_);
       eval_input2d::store_prototype(proto_map_);
       eval_linear::store_prototype(proto_map_);
+      eval_maxpool2d::store_prototype(proto_map_);
         
 }
 eval_op_prototypes &eval_op_prototypes::instance() 
