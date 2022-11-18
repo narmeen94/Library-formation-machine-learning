@@ -7,6 +7,7 @@
 #include "eval_relu.h"
 #include "eval_flatten.h"
 #include "eval_input2d.h"
+#include "eval_linear.h"
 
 
 
@@ -21,6 +22,7 @@ eval_op_prototypes::eval_op_prototypes()
       eval_relu::store_prototype(proto_map_);
       eval_flatten::store_prototype(proto_map_);
       eval_input2d::store_prototype(proto_map_);
+      eval_linear::store_prototype(proto_map_);
         
 }
 eval_op_prototypes &eval_op_prototypes::instance() 
@@ -30,8 +32,18 @@ eval_op_prototypes &eval_op_prototypes::instance()
 }
 
  std::shared_ptr<eval_op> eval_op_prototypes::locate(std::string name)
- { //add error handling
-    return proto_map_[name];
+ { 
+    auto it=proto_map_.find(name);
+    if(it==proto_map_.end()){
+        printf("locate not found");
+        assert(false);
+    }
+    else{
+        return proto_map_[name];
+    }
+
+
+    
 
  }
 

@@ -49,7 +49,7 @@ double tensor::at(size_t i) const
     
 double tensor::at(size_t i, size_t j) const 
 {
-    assert(get_dim() == 2);
+    //assert(get_dim() == 2);
     assert((i < shape_[0]) && (j < shape_[1]));   //so the index is not out of range for a matrix.
     return data_[i*shape_[1]+j];
 }

@@ -28,7 +28,7 @@ int program::add_op_param_double(
     const char *key,
     double value)
 {
-    exprs_.back().add_op_param_double(key,value);
+    exprs_.back().set_op_param(key,tensor(value));
     
     return 0;
 }
@@ -39,7 +39,7 @@ int program::add_op_param_ndarray(
     size_t shape[],
     double data[])
 {
-    exprs_.back().add_op_param_ndarray(key,dim,shape,data);
+    exprs_.back().set_op_param(key,tensor(dim,shape,data));
     
     return 0;
 }

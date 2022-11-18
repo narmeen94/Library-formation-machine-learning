@@ -47,6 +47,8 @@ public:
 
     int get_num_inputs_();
 
+    void set_op_param(std::string key,tensor value);
+
     tensor get_op_param(std::string) const;
    
 
