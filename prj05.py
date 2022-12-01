@@ -109,7 +109,7 @@ def backprop(labels, theta, z, h, g, x):
         # h = ReLU(g)
         #   compute partial J to partial g[i]
         # ToDo: uncomment code below to add your own code
-        p_g = 1*(g[i]>0)*p_h #applying step function since it is the derivative f Relu
+        p_g = 1*(g[i]>0)*p_h #applying step function since it is the derivative of Relu
 
         #np.zeros(p_g.shape[0])
         #print("the shape of p_g is:"+str(p_g.shape)) #(4,32)
@@ -130,10 +130,10 @@ def backprop(labels, theta, z, h, g, x):
 # return updated theta
 def update_theta(theta, nabla_J, epsilon):
     # ToDo: modify code below as needed
-    theta_out=tuple([epsilon*j for j in nabla_J])
+    theta_out=tuple([epsilon*j for j in nabla_J]) #forming a tuple of all the things in nabla j*epsilon
     updated_theta=list(theta)
     for elem in range (len(theta_out)):
-        updated_theta[elem]=theta[elem]-theta_out[elem]
+        updated_theta[elem]=theta[elem]-theta_out[elem] #the actual SGD equation
     
 
 
@@ -153,7 +153,7 @@ training_labels = mnist_train["labels"][1000:]
 
 # hyperparameters
 #bound = 1 # initial weight range
-bound=0.01
+bound=0.01 #my tries #works great, all tests pass for bound 0.01
 epsilon = 0.00001 # learning rate
 batch_size = 4
 
