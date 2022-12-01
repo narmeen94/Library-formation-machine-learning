@@ -37,7 +37,7 @@ def forward(images, theta):
     f1_W, f1_b, f2_W, f2_b = theta
 
     # x = Flatten(images)
-    x = images.astype(float).transpose(0,3,1,2).reshape((N, -1))
+    x = images.astype(float).transpose(0,3,1,2).reshape((N, -1)) #-1 puts elements into single dimension
 
     # g = Linear_f1(x)
     g = np.zeros((N, f1_b.shape[0]))
@@ -61,9 +61,20 @@ def forward(images, theta):
 def backprop(labels, theta, z, h, g, x):
     # number of samples
     N = labels.shape[0]
+    
 
     # unpack theta into f1 and f2
     f1_W, f1_b, f2_W, f2_b = theta
+
+   # print("this is the number of samples: ")
+   # print(N)
+   # print("this is the shape of f1_W:"+str(f1_W.shape))
+    # print("this is the shape of f1_b:"+str(f1_b.shape))
+    # print("this is the shape of f2_W:"+str(f2_W.shape))
+    # print("this is the shape of f2_b:"+str(f2_b.shape))
+    # print("this is the shape of h:"+str(h.shape))
+    # print("this is the shape of z:"+str(z.shape))
+    # print("this is the shape of g:"+str(g.shape))
 
     # nabla_J consists of partial J to partial f1_W, f1_b, f2_W, f2_b
     p_f1_W = np.zeros(f1_W.shape)
@@ -80,25 +91,37 @@ def backprop(labels, theta, z, h, g, x):
         expz = np.exp(z[i]-max(z[i]))
         p_z = expz/sum(expz)/N
         p_z[labels[i]] -= 1/N
+        #print("this is the shape of p_z:"+str(p_z.shape))
 
         # z = Linear_f2(h)
         #   compute partial J to partial h[i]
         #   accumulate partial J to partial f2_W, f2_b
         # ToDo: uncomment code below to add your own code
-        # p_h = ...
-        # p_f2_W += ...
-        # p_f2_b += ...
+        f2_w_trans=np.transpose(f2_W)
+        p_h = np.matmul(f2_w_trans,p_z)
+        #p_f2_W += np.matmul(p_z.reshape(10,1),h[i,:]) #for each
+        #p_f2_W += np.matmul(p_z,h[i,:])
+        p_f2_W += np.matmul(p_z.reshape(10,1),h[i].reshape(1,32))
+        p_f2_b += p_z
+        #print("this is h[i]")
+        #print(h[i])
 
         # h = ReLU(g)
         #   compute partial J to partial g[i]
         # ToDo: uncomment code below to add your own code
-        # p_g = ...
+        p_g = 1*(g[i]>0)*p_h #applying step function since it is the derivative f Relu
+
+        #np.zeros(p_g.shape[0])
+        #print("the shape of p_g is:"+str(p_g.shape)) #(4,32)
+        #print('the shape of x:'+str(x.shape))
+        #print("the shape of p_h is:"+str(p_h.shape))
 
         # g = Linear_f1(x)
         #   accumulate partial J to partial f1_W, f1_b
         # ToDo: uncomment code below to add your own code
-        # p_f1_W += ...
-        # p_f1_b += ...
+        p_f1_W += np.matmul(p_g.reshape(32,1),x[i].reshape(1,784))
+        #p_f1_b += p_g[i,:]
+        p_f1_b += p_g
 
     return (p_f1_W, p_f1_b, p_f2_W, p_f2_b)
 
@@ -107,12 +130,19 @@ def backprop(labels, theta, z, h, g, x):
 # return updated theta
 def update_theta(theta, nabla_J, epsilon):
     # ToDo: modify code below as needed
-    updated_theta = theta
+    theta_out=tuple([epsilon*j for j in nabla_J])
+    updated_theta=list(theta)
+    for elem in range (len(theta_out)):
+        updated_theta[elem]=theta[elem]-theta_out[elem]
+    
+
+
+    #updated_theta = theta-epsilon*nabla_J
     return updated_theta
 
 
 # ToDo: set numpy random seed to the last 8 digits of your CWID
-np.random.seed(12345678)
+np.random.seed(20492404)
 
 # load training data and split them for validation/training
 mnist_train = np.load("mnist_train.npz")
@@ -122,7 +152,8 @@ training_images = mnist_train["images"][1000:]
 training_labels = mnist_train["labels"][1000:]
 
 # hyperparameters
-bound = 1 # initial weight range
+#bound = 1 # initial weight range
+bound=0.01
 epsilon = 0.00001 # learning rate
 batch_size = 4
 

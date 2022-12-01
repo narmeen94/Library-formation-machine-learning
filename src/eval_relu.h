@@ -1,5 +1,5 @@
 #ifndef EVAL_RELU_H
- #define EVAL_RELU_H
+#define EVAL_RELU_H
 
 #include <vector>
 #include <string>

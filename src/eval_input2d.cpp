@@ -44,9 +44,7 @@ void eval_input2d::eval(vars_type &variables, const kwargs_type &kwargs) //shoul
             {
                 for (size_t i3=0;i3!=shape_new[3];i3++ )
                 {
-                    //new_data.push_back(data[(i0*(shape_new[1]*shape_new[2]*shape_new[3]))+(i1*(shape_new[2]*shape_new[3]))+(i2*(shape_new[3]))+i3]);
-                   //new_data.push_back(data[(i0*(shape[1]*shape[2]*shape[3]))+(i1*(shape[2]*shape[3]))+(i2*(shape[3]))+i3]);
-
+                    
                    new_data.push_back(data[(i0*shape[1]*shape[2]*shape[3])+(i2*shape[2]*shape[3])+(i3*shape[3])+i1]);  //converting from NHWC to NCHW requires this transformation.
                    //this is basically A(n,c,h,w)=n*CHW + h*HW + W*w + c
 
@@ -57,10 +55,6 @@ void eval_input2d::eval(vars_type &variables, const kwargs_type &kwargs) //shoul
 
     double *new_data_array=new_data.data();
     variables[expr_id_]=tensor(4,shape_new,new_data_array);
-
-
-
-
     
 }
 

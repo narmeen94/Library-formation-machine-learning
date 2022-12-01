@@ -28,10 +28,6 @@ void eval_flatten::eval(vars_type &variables, const kwargs_type &kwargs) //shoul
 
     
     variables[expr_id_]=tensor(2,shape_new,data_flatten);
-
-
-
-
     
 }
 

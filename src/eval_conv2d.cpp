@@ -72,34 +72,7 @@ void eval_conv2d::eval(vars_type &variables, const kwargs_type &kwargs)
         }
     }
 
-    // for(size_t a=0;a!=N;a++)
-    // {
-    //     for(size_t b=0;b!=Cout;b++)
-    //     {
-    //         for(size_t c=0;c!=Cin;c++)
-    //         {
-    //             for(size_t n=0;n!=(H-k+1);n++)
-    //             {
-    //                 for(size_t m=0;m!=(W-k+1);m++)
-    //                 {
-    //                     for(size_t i=0;i!=k;i++)
-    //                     {
-    //                         for(size_t j=0;j!=k;j++)
-    //                         {
-    //                             //sum=sum+data[(a*Cin*H*W)+(b*H*W)+(n+i)*W+(m+j)] * data_w[(a*Cin*k*k)+(b*k*k)+(i*k)+j];
-    //                             sum=sum+data[(a*Cin*H*W)+(c*H*W)+(n+i)*W+(m+j)] * data_w[(b*Cin*k*k)+(c*k*k)+(i*k)+j];
-
-                                
-    //                         }
-    //                     }
-                        
-    //                     data_vec.push_back(sum+bias_.at(b));
-    //                     sum=0;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    
 
     double *data_vec_array=data_vec.data();
     size_t shape_out[4]={N,Cout,(H-k+1),(W-k+1)};
