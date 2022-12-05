@@ -152,10 +152,12 @@ training_images = mnist_train["images"][1000:]
 training_labels = mnist_train["labels"][1000:]
 
 # hyperparameters
-#bound = 1 # initial weight range
+#bound = 1  # initial weight range
 bound=0.01 #my tries #works great, all tests pass for bound 0.01
 epsilon = 0.00001 # learning rate
-batch_size = 4
+#epsilon = 0.01 #my try
+#batch_size = 4
+batch_size = 1
 
 # start training
 start = time.time()
